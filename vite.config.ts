@@ -18,8 +18,8 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/',
-        scope: '/',
+        start_url: '/MedTrack/',
+        scope: '/MedTrack/',
         icons: [
           {
             src: '/icons/icon-96x96.png',
