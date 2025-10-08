@@ -59,7 +59,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/MedTrack">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<TodayPage />} />
