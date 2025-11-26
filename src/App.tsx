@@ -9,6 +9,7 @@ import SettingsPage from './pages/SettingsPage';
 import { loadState } from './utils/localStorage';
 import { checkAuthStatus } from './utils/authService';
 import notificationService from './utils/notificationService';
+import { requestPushPermission, setupPushNotifications } from './utils/firebaseConfig';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
@@ -30,9 +31,20 @@ function App() {
         }
       }
     };
-    
+
     checkNotifications();
-    
+
+    // Register service worker for push notifications
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/MedTrack/firebase-messaging-sw.js', {
+        scope: '/MedTrack/'
+      }).catch(error => console.error('Service Worker registration failed:', error));
+    }
+
+    // Setup Firebase push notifications
+    setupPushNotifications();
+    requestPushPermission();
+
     return () => {
       // Cleanup notification timers
       notificationService.clearScheduledNotifications();
