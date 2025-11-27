@@ -3,12 +3,12 @@ import { WorkoutExercise } from '../types';
 export const workoutExercises: WorkoutExercise[] = [
   // Leg Exercises
   {
-    id: 'deadlifts',
-    name: 'Straight Leg Deadlifts',
+    id: 'bulgarians',
+    name: 'Bulgarian Split Squats',
     category: 'strength',
     targetSets: 3,
-    targetReps: '8-12',
-    icon: 'Dumbbell',
+    targetReps: '10-15 per leg',
+    icon: 'Leg',
   },
   {
     id: 'squats',
