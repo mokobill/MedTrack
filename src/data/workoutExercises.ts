@@ -41,7 +41,7 @@ export const workoutExercises: WorkoutExercise[] = [
     name: 'Pike Push-Ups',
     category: 'strength',
     targetSets: 3/4,
-    targetReps: '10-15'',
+    targetReps: '10-15',
     icon: 'Dumbbell',
   },
   {
