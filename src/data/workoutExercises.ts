@@ -166,5 +166,5 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: 3,
     targetReps: '30-40s',
-    icon: 'zap',
+    icon: 'zap'
   },
