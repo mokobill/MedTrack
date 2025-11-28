@@ -168,3 +168,4 @@ export const workoutExercises: WorkoutExercise[] = [
     targetReps: '30-40s',
     icon: 'zap'
   },
+  ];
