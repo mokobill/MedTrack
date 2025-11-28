@@ -94,7 +94,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: 3,
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'lunges',
@@ -102,7 +102,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: 3,
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'push-ups',
@@ -110,7 +110,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'diamond',
@@ -118,7 +118,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'Pike-Push',
@@ -126,7 +126,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'rows',
@@ -134,7 +134,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'glutes',
@@ -142,7 +142,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'Nordics',
@@ -150,7 +150,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: 3,
     targetReps: '10-15',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'hollow-hold',
@@ -158,7 +158,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: 3,
     targetReps: '30-40s',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
   {
     id: 'side planks',
@@ -166,5 +166,5 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'resistance',
     targetSets: 3,
     targetReps: '30-40s',
-    icon: 'Dumbbell',
+    icon: 'zap',
   },
