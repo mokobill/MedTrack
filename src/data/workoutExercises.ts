@@ -94,7 +94,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: 3,
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'lunges',
@@ -102,7 +102,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: 3,
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'push-ups',
@@ -110,7 +110,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'diamond',
@@ -118,7 +118,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'Pike-Push',
@@ -126,7 +126,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'rows',
@@ -134,7 +134,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'glutes',
@@ -142,7 +142,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'Nordics',
@@ -150,7 +150,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: 3,
     targetReps: '10-15',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'hollow-hold',
@@ -158,7 +158,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: 3,
     targetReps: '30-40s',
-    icon: 'zap',
+    icon: 'Zap',
   },
   {
     id: 'side planks',
@@ -166,7 +166,7 @@ export const workoutExercises: WorkoutExercise[] = [
     category: 'home-workout',
     targetSets: 3,
     targetReps: '30-40s',
-    icon: 'zap',
+    icon: 'Zap',
   },
 
   
