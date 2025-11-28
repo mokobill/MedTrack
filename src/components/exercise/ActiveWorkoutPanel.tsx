@@ -50,7 +50,7 @@ const ActiveWorkoutPanel: React.FC<ActiveWorkoutPanelProps> = ({
   
   const handleAddSet = () => {
     const newSet: Omit<ExerciseSet, 'id'> = {
-      weight: exercise.category === 'strength' ? weight : undefined,
+      weight: exercise.category === 'resistance' ? weight : undefined,
       reps,
       notes: notes.trim() || undefined,
       completed: false,
