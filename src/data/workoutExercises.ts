@@ -91,7 +91,7 @@ export const workoutExercises: WorkoutExercise[] = [
  {
     id: 'bulgarians',
     name: 'Bulgarian Split Squats',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: 3,
     targetReps: '10-15',
     icon: 'zap',
@@ -99,7 +99,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'lunges',
     name: 'Single Leg Lunges',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: 3,
     targetReps: '10-15',
     icon: 'zap',
@@ -107,7 +107,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'push-ups',
     name: 'Push-Ups',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
     icon: 'zap',
@@ -115,7 +115,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'diamond',
     name: 'Diamond Push-Ups',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
     icon: 'zap',
@@ -123,7 +123,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'Pike-Push',
     name: 'Pike Push-Ups',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
     icon: 'zap',
@@ -131,7 +131,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'rows',
     name: 'Inverted Rows',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
     icon: 'zap',
@@ -139,7 +139,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'glutes',
     name: 'Single Leg Glute Bridges',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: '3-4',
     targetReps: '10-15',
     icon: 'zap',
@@ -147,7 +147,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'Nordics',
     name: 'Nordics',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: 3,
     targetReps: '10-15',
     icon: 'zap',
@@ -155,7 +155,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'hollow-hold',
     name: 'Hollow Hold',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: 3,
     targetReps: '30-40s',
     icon: 'zap',
@@ -163,7 +163,7 @@ export const workoutExercises: WorkoutExercise[] = [
   {
     id: 'side planks',
     name: 'Side Planks',
-    category: 'resistance',
+    category: 'home-workout',
     targetSets: 3,
     targetReps: '30-40s',
     icon: 'zap',
