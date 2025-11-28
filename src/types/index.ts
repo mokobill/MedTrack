@@ -21,7 +21,7 @@ export interface ExerciseItem {
 export interface WorkoutExercise {
   id: string;
   name: string;
-  category: 'strength' | 'cardio' | 'flexibility';
+  category: 'resistance' | 'home-workout' | 'cardio' | 'flexibility';
   targetSets?: number;
   targetReps?: string;
   icon: string;

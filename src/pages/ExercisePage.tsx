@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Clock, Weight, RotateCcw } from 'lucide-react';
+import { Plus, Clock, Weight, RotateCcw, Dumbbell, Zap } from 'lucide-react';
 import { loadState, saveState } from '../utils/localStorage';
 import { getCurrentDate } from '../utils/dateUtils';
 import { WorkoutExercise, WorkoutSession, ExerciseSet } from '../types';
@@ -13,6 +13,7 @@ const ExercisePage: React.FC = () => {
   const [appState, setAppState] = useState(loadState());
   const [activeWorkout, setActiveWorkout] = useState<WorkoutSession | null>(null);
   const [selectedExercise, setSelectedExercise] = useState<WorkoutExercise | null>(null);
+  const [activeTab, setActiveTab] = useState<'resistance' | 'home-workout'>('resistance');
   const currentDate = getCurrentDate();
   
   // Get today's workout sessions
@@ -140,7 +141,7 @@ const ExercisePage: React.FC = () => {
         <h1 className="text-2xl font-semibold text-gray-900">Exercise</h1>
         <p className="text-gray-500 mt-1">Track your strength training and workouts</p>
       </header>
-      
+
       {/* Today's Summary */}
       <Card className="mb-6">
         <h2 className="text-lg font-medium text-gray-900 mb-4">Today's Summary</h2>
@@ -163,39 +164,57 @@ const ExercisePage: React.FC = () => {
           </div>
         </div>
       </Card>
-      
-      {/* Exercise Categories */}
-      <div className="space-y-6">
-        {/* Strength Training */}
-        <div>
-          <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-            <Weight className="mr-2" size={20} />
-            Resistance Training
-          </h2>
-          
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+
+      {/* Exercise Tabs */}
+      <div className="mb-6">
+        <div className="flex gap-2 border-b border-gray-200">
+          <button
+            onClick={() => setActiveTab('resistance')}
+            className={`flex items-center gap-2 px-4 py-3 font-medium border-b-2 transition-all ${
+              activeTab === 'resistance'
+                ? 'border-primary-600 text-primary-600'
+                : 'border-transparent text-gray-600 hover:text-gray-900'
+            }`}
           >
-            {appState.workoutExercises
-              .filter(exercise => exercise.category === 'strength')
-              .map((exercise) => {
-                const stats = getExerciseStats(exercise.id);
-                return (
-                  <motion.div key={exercise.id} variants={itemVariants}>
-                    <WorkoutExerciseCard
-                      exercise={exercise}
-                      stats={stats}
-                      onStart={() => handleStartExercise(exercise)}
-                    />
-                  </motion.div>
-                );
-              })}
-          </motion.div>
+            <Dumbbell size={20} />
+            Resistance Training
+          </button>
+          <button
+            onClick={() => setActiveTab('home-workout')}
+            className={`flex items-center gap-2 px-4 py-3 font-medium border-b-2 transition-all ${
+              activeTab === 'home-workout'
+                ? 'border-primary-600 text-primary-600'
+                : 'border-transparent text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            <Zap size={20} />
+            Home Workout
+          </button>
         </div>
       </div>
+
+      {/* Exercise Categories */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      >
+        {appState.workoutExercises
+          .filter(exercise => exercise.category === activeTab)
+          .map((exercise) => {
+            const stats = getExerciseStats(exercise.id);
+            return (
+              <motion.div key={exercise.id} variants={itemVariants}>
+                <WorkoutExerciseCard
+                  exercise={exercise}
+                  stats={stats}
+                  onStart={() => handleStartExercise(exercise)}
+                />
+              </motion.div>
+            );
+          })}
+      </motion.div>
     </div>
   );
 };
