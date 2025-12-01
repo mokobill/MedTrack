@@ -10,6 +10,7 @@ import { loadState } from './utils/localStorage';
 import { checkAuthStatus } from './utils/authService';
 import notificationService from './utils/notificationService';
 import { requestPushPermission, setupPushNotifications } from './utils/firebaseConfig';
+import { trackAppAccess } from './utils/appAccessService';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
@@ -20,6 +21,11 @@ function App() {
     const authState = checkAuthStatus();
     setIsAuthenticated(authState.isAuthenticated);
     setIsLoading(false);
+
+    // Track app access
+    if (authState.isAuthenticated && authState.currentUser) {
+      trackAppAccess(authState.currentUser);
+    }
 
     // Initialize notification permission
     const checkNotifications = async () => {
