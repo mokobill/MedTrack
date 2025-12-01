@@ -50,19 +50,19 @@ const ActiveWorkoutPanel: React.FC<ActiveWorkoutPanelProps> = ({
   
   const handleAddSet = () => {
     const newSet: Omit<ExerciseSet, 'id'> = {
-      weight: exercise.category === 'strength' ? weight : undefined,
+      weight: exercise.category === 'resistance' ? weight : undefined,
       reps,
       notes: notes.trim() || undefined,
       completed: false,
     };
-    
+
     onAddSet(newSet);
-    
-    // Start rest timer (default 90 seconds for strength, 30 for cardio)
-    const restTime = exercise.category === 'strength' ? 90 : 30;
+
+    // Start rest timer (default 90 seconds for resistance, 30 for home-workout)
+    const restTime = exercise.category === 'resistance' ? 90 : 30;
     setRestTimer(restTime);
     setIsResting(true);
-    
+
     // Clear notes for next set
     setNotes('');
   };
@@ -143,18 +143,18 @@ const ActiveWorkoutPanel: React.FC<ActiveWorkoutPanelProps> = ({
                   </div>
                   
                   <div className="flex items-center space-x-6">
-                    {exercise.category === 'strength' && (
+                    {exercise.category === 'resistance' && (
                       <div>
                         <div className="text-xs text-gray-400">Weight</div>
-                        <div className="text-lg font-medium">{set.weight || 0}</div>
+                        <div className="text-lg font-medium">{set.weight || 0} lbs</div>
                       </div>
                     )}
-                    
+
                     <div>
                       <div className="text-xs text-gray-400">Reps</div>
                       <div className="text-lg font-medium">{set.reps}</div>
                     </div>
-                    
+
                     {set.notes && (
                       <div>
                         <div className="text-xs text-gray-400">Notes</div>
@@ -188,11 +188,11 @@ const ActiveWorkoutPanel: React.FC<ActiveWorkoutPanelProps> = ({
         
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            {exercise.category === 'strength' && (
+            {exercise.category === 'resistance' && (
               <div>
                 <label className="block text-sm text-gray-400 mb-1">
                   <Weight size={14} className="inline mr-1" />
-                  Weight
+                  Weight (lbs)
                 </label>
                 <input
                   type="number"
@@ -204,7 +204,7 @@ const ActiveWorkoutPanel: React.FC<ActiveWorkoutPanelProps> = ({
                 />
               </div>
             )}
-            
+
             <div>
               <label className="block text-sm text-gray-400 mb-1">
                 <Hash size={14} className="inline mr-1" />
