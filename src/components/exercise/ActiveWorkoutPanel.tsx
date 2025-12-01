@@ -192,7 +192,7 @@ const ActiveWorkoutPanel: React.FC<ActiveWorkoutPanelProps> = ({
               <div>
                 <label className="block text-sm text-gray-400 mb-1">
                   <Weight size={14} className="inline mr-1" />
-                  Weight (lbs)
+                  Weight (kg)
                 </label>
                 <input
                   type="number"
