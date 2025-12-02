@@ -49,7 +49,11 @@ function App() {
 
     // Setup Firebase push notifications
     setupPushNotifications();
-    requestPushPermission();
+    if (authState.isAuthenticated && authState.currentUser) {
+      requestPushPermission(authState.currentUser);
+    } else {
+      requestPushPermission();
+    }
 
     return () => {
       // Cleanup notification timers

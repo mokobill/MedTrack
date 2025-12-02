@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { createClient } from '@supabase/supabase-js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyD36hy0PyToVnsYDKmeBpxN1qF3n3KjncM",
@@ -14,7 +15,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-export const requestPushPermission = async () => {
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const saveDeviceToken = async (userIdentifier: string, token: string) => {
+  try {
+    await supabase
+      .from('device_tokens')
+      .upsert({
+        user_identifier: userIdentifier,
+        device_token: token,
+        is_active: true,
+        updated_at: new Date().toISOString(),
+      }, {
+        onConflict: 'user_identifier,device_token'
+      });
+  } catch (error) {
+    console.error('Error saving device token:', error);
+  }
+};
+
+export const requestPushPermission = async (userIdentifier?: string) => {
   try {
     const permission = await Notification.requestPermission();
     if (permission === 'granted') {
@@ -22,6 +44,11 @@ export const requestPushPermission = async () => {
         vapidKey: "BDBXzGOdIrybsxzYNeYr1nFhoocu-cdNqKUKWKQSUQQ8W_vurDzaR8EuG4idiE-mBWY1Whr9_zp3yHtq0KKAfFs"
       });
       console.log('FCM Token:', token);
+
+      if (userIdentifier) {
+        await saveDeviceToken(userIdentifier, token);
+      }
+
       return token;
     }
   } catch (error) {
