@@ -19,8 +19,8 @@ messaging.onBackgroundMessage(function(payload) {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: '/MedTrack/public/icons/icon-192x192.png',
-    badge: '/MedTrack/public/icons/icon-96x96.png',
+    icon: '/MedTrack/icons/icon-192x192.png',
+    badge: '/MedTrack/icons/icon-96x96.png',
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);

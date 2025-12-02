@@ -36,8 +36,8 @@ export const setupPushNotifications = () => {
     const notificationTitle = payload.notification?.title || 'MedTrack';
     const notificationOptions = {
       body: payload.notification?.body || 'New notification',
-      icon: '/public/icons/icon-192x192.png',
-      badge: '/public/icons/icon-96x96.png',
+      icon: '/MedTrack/icons/icon-192x192.png',
+      badge: '/MedTrack/icons/icon-96x96.png',
     };
 
     if (Notification.permission === 'granted') {
