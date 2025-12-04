@@ -60,3 +60,27 @@ export const isNewDay = (lastDate: string): boolean => {
   const currentDate = getCurrentDate();
   return currentDate !== lastDate;
 };
+
+export const isMondayAtResetTime = (lastResetTime?: string): boolean => {
+  const now = new Date();
+
+  // Create a Monday at 00:00 GMT in the current week
+  const nowUTC = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
+  const dayOfWeekUTC = nowUTC.getUTCDay();
+
+  // Calculate Monday of this week in GMT
+  const daysUntilMonday = dayOfWeekUTC === 0 ? 0 : (dayOfWeekUTC === 1 ? 0 : 8 - dayOfWeekUTC);
+  const lastMondayUTC = new Date(nowUTC);
+  lastMondayUTC.setUTCDate(lastMondayUTC.getUTCDate() - dayOfWeekUTC + (dayOfWeekUTC === 0 ? 0 : 1));
+  lastMondayUTC.setUTCHours(0, 0, 0, 0);
+
+  // If no lastResetTime exists, it's the first time - return true to reset
+  if (!lastResetTime) {
+    return true;
+  }
+
+  const lastResetDate = new Date(lastResetTime);
+
+  // Check if the last reset was before the current Monday at 00:00 GMT
+  return lastResetDate < lastMondayUTC;
+};

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getDisplayDate, getCurrentDate, getCurrentWeekStart, isNewWeek, isNewDay } from '../utils/dateUtils';
+import { getDisplayDate, getCurrentDate, getCurrentWeekStart, isNewWeek, isNewDay, isMondayAtResetTime } from '../utils/dateUtils';
 import { loadState, saveState } from '../utils/localStorage';
 import { FoodItem, ExerciseItem, DietTracking, WeeklyTracking } from '../types';
 import FoodItemCard from '../components/diet/FoodItemCard';
@@ -20,29 +20,51 @@ const TodayPage: React.FC = () => {
   );
   
   useEffect(() => {
-    // Check for week reset (Monday 00:00)
+    const newState = { ...appState };
+    let stateChanged = false;
+
+    // Check for Monday 00:00 GMT reset
+    const exerciseItemsNeedReset = newState.exerciseItems.some(
+      item => item.period === 'week' && isMondayAtResetTime(item.lastResetTime)
+    );
+
+    if (exerciseItemsNeedReset) {
+      const currentMondayGMT = new Date();
+      const dayOfWeekUTC = currentMondayGMT.getUTCDay();
+      const lastMondayUTC = new Date(currentMondayGMT);
+      lastMondayUTC.setUTCDate(lastMondayUTC.getUTCDate() - dayOfWeekUTC + (dayOfWeekUTC === 0 ? 0 : 1));
+      lastMondayUTC.setUTCHours(0, 0, 0, 0);
+
+      newState.exerciseItems = newState.exerciseItems.map(item =>
+        item.period === 'week'
+          ? { ...item, completed: 0, lastResetTime: lastMondayUTC.toISOString() }
+          : item
+      );
+      stateChanged = true;
+    }
+
+    // Reset weekly tracking and initialize new week if needed
     const lastWeekStart = Object.keys(appState.weeklyTracking).sort().pop();
     if (lastWeekStart && isNewWeek(lastWeekStart)) {
-      // Reset weekly tracking and exercise progress
-      const newState = { ...appState };
       newState.weeklyTracking[currentWeekStart] = { weekStart: currentWeekStart, items: {} };
-      newState.exerciseItems = newState.exerciseItems.map(item => ({ ...item, completed: 0 }));
-      setAppState(newState);
       setWeeklyTracking({ weekStart: currentWeekStart, items: {} });
-      saveState(newState);
+      stateChanged = true;
     }
-    
+
     // Initialize tracking for today if it doesn't exist
     if (!appState.tracking[currentDate]) {
-      const newState = { ...appState };
       newState.tracking[currentDate] = { date: currentDate, items: {} };
       if (!newState.weeklyTracking[currentWeekStart]) {
         newState.weeklyTracking[currentWeekStart] = { weekStart: currentWeekStart, items: {} };
       }
+      stateChanged = true;
+    }
+
+    if (stateChanged) {
       setAppState(newState);
       saveState(newState);
     }
-    
+
     // Set up notifications
     if (appState.settings.notifications.enabled) {
       notificationService.requestPermission().then((granted) => {

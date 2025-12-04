@@ -16,6 +16,7 @@ export interface ExerciseItem {
   period: 'day' | 'week';
   completed: number;
   icon: string;
+  lastResetTime?: string;
 }
 
 export interface WorkoutExercise {
