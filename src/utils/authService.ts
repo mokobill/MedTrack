@@ -8,6 +8,7 @@ const AUTH_STORAGE_KEY = 'med-diet-tracker-auth';
 interface AuthState {
   isAuthenticated: boolean;
   username: string | null;
+  currentUser?: string | null;
   loginTime: number;
 }
 
@@ -70,24 +71,27 @@ export const checkAuthStatus = (): AuthState => {
   try {
     const authData = localStorage.getItem(AUTH_STORAGE_KEY);
     if (!authData) {
-      return { isAuthenticated: false, username: null, loginTime: 0 };
+      return { isAuthenticated: false, username: null, currentUser: null, loginTime: 0 };
     }
-    
+
     const authState: AuthState = JSON.parse(authData);
-    
+
     // Check if login is still valid (24 hours)
     const twentyFourHours = 24 * 60 * 60 * 1000;
     const isExpired = Date.now() - authState.loginTime > twentyFourHours;
-    
+
     if (isExpired) {
       logout();
-      return { isAuthenticated: false, username: null, loginTime: 0 };
+      return { isAuthenticated: false, username: null, currentUser: null, loginTime: 0 };
     }
-    
-    return authState;
+
+    return {
+      ...authState,
+      currentUser: authState.username
+    };
   } catch (error) {
     console.error('Error checking auth status:', error);
-    return { isAuthenticated: false, username: null, loginTime: 0 };
+    return { isAuthenticated: false, username: null, currentUser: null, loginTime: 0 };
   }
 };
 
