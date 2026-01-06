@@ -22,9 +22,14 @@ function App() {
     setIsAuthenticated(authState.isAuthenticated);
     setIsLoading(false);
 
-    // Track app access
-    if (authState.isAuthenticated && authState.currentUser) {
-      trackAppAccess(authState.currentUser);
+    // Only run notifications/tracking if authenticated
+    if (!authState.isAuthenticated) {
+      return;
+    }
+
+    const username = authState.username || authState.currentUser;
+    if (username) {
+      trackAppAccess(username);
     }
 
     // Initialize notification permission
@@ -50,8 +55,8 @@ function App() {
     // Setup Firebase push notifications
     try {
       setupPushNotifications();
-      if (authState.isAuthenticated && authState.currentUser) {
-        requestPushPermission(authState.currentUser);
+      if (username) {
+        requestPushPermission(username);
       }
     } catch (error) {
       console.error('Error initializing push notifications:', error);
