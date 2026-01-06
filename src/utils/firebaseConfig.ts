@@ -58,19 +58,23 @@ export const requestPushPermission = async (userIdentifier?: string) => {
 };
 
 export const setupPushNotifications = () => {
-  onMessage(messaging, (payload) => {
-    console.log('Message received:', payload);
-    const notificationTitle = payload.notification?.title || 'MedTrack';
-    const notificationOptions = {
-      body: payload.notification?.body || 'New notification',
-      icon: '/MedTrack/icons/icon-192x192.png',
-      badge: '/MedTrack/icons/icon-96x96.png',
-    };
+  try {
+    onMessage(messaging, (payload) => {
+      console.log('Message received:', payload);
+      const notificationTitle = payload.notification?.title || 'MedTrack';
+      const notificationOptions = {
+        body: payload.notification?.body || 'New notification',
+        icon: '/MedTrack/icons/icon-192x192.png',
+        badge: '/MedTrack/icons/icon-96x96.png',
+      };
 
-    if (Notification.permission === 'granted') {
-      new Notification(notificationTitle, notificationOptions);
-    }
-  });
+      if (Notification.permission === 'granted') {
+        new Notification(notificationTitle, notificationOptions);
+      }
+    });
+  } catch (error) {
+    console.error('Error setting up push notifications:', error);
+  }
 };
 
 export default messaging;

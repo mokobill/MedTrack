@@ -48,11 +48,13 @@ function App() {
     }
 
     // Setup Firebase push notifications
-    setupPushNotifications();
-    if (authState.isAuthenticated && authState.currentUser) {
-      requestPushPermission(authState.currentUser);
-    } else {
-      requestPushPermission();
+    try {
+      setupPushNotifications();
+      if (authState.isAuthenticated && authState.currentUser) {
+        requestPushPermission(authState.currentUser);
+      }
+    } catch (error) {
+      console.error('Error initializing push notifications:', error);
     }
 
     return () => {
